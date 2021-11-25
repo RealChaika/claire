@@ -148,6 +148,25 @@ Request.prototype.servedOverH2 = function () {
   return this.connectionType === 'h2';
 };
 
+Request.prototype.getConnType = function () {
+  return this.connectionType ? this.connectionType : "Unknown";
+};
+
+Request.prototype.getCacheStatus = function () {
+  let cacheStatus = this.headers['CF-CACHE-STATUS'];
+  console.table(this.headers);
+  this.logToConsole()
+  if (cacheStatus) {
+    return cacheStatus;
+  }
+
+  return "Unknown";
+};
+
+Request.prototype.servedOverH3 = function () {
+  return this.connectionType === 'http/2+quic/99';
+};
+
 Request.prototype.ServedFromBrowserCache = function () {
   return this.details.fromCache;
 };

@@ -32,6 +32,7 @@ chrome.tabs.query(queryInfo, function (tabs) {
   var request = extensionWindow.requests[tabID];
 
   document.getElementById('ip').value = request.getServerIP();
+  document.getElementById('conn').value = request.getConnType();
   document.querySelector('#claireInfoImage img').src = request.getPopupPath() + '.png';
 
   // show the Ray ID & location
@@ -40,10 +41,12 @@ chrome.tabs.query(queryInfo, function (tabs) {
     document.getElementById('locationCode').textContent = request.getCloudFlareLocationCode();
     document.getElementById('locationName').textContent = request.getCloudFlareLocationName();
     document.getElementById('traceURL').href = request.getCloudFlareTrace();
+    document.getElementById('cacheStatus').value = request.getCacheStatus();
   } else {
     document.getElementById('ray').classList.add('hidden');
     document.getElementById('loc').classList.add('hidden');
     document.getElementById('actions').classList.add('hidden');
+    document.getElementById('cache').classList.add('hidden');
   }
 
   // show Railgun related info
