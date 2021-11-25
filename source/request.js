@@ -154,8 +154,7 @@ Request.prototype.getConnType = function () {
 
 Request.prototype.getCacheStatus = function () {
   let cacheStatus = this.headers['CF-CACHE-STATUS'];
-  console.table(this.headers);
-  this.logToConsole()
+  
   if (cacheStatus) {
     return cacheStatus;
   }
